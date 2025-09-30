@@ -1,9 +1,9 @@
+import { getSession } from "@auth0/nextjs-auth0";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import Head from "next/head";
-import Link from "next/link";
-// import { getSession } from "@auth0/nextjs-auth0";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
   const { isLoading, error, user } = useUser();
@@ -27,6 +27,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold">Welcome to ChatGPT</h1>
           <p className="mt-2 text-lg">Log in with your account to continue</p>
           <div className="mt-4 flex justify-center gap-3">
+            {!!user && <Link href="/api/auth/logout">Logout</Link>}
             {!user && (
               <>
                 <Link href="/api/auth/login" className="btn">
@@ -44,17 +45,17 @@ export default function Home() {
   );
 }
 
-// export const getServerSideProps = async (ctx) => {
-//   const session = await getSession(ctx.req, ctx.res);
-//   if (!!session) {
-//     return {
-//       redirect: {
-//         destination: "/chat",
-//       },
-//     };
-//   }
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession(ctx.req, ctx.res);
+  if (!!session) {
+    return {
+      redirect: {
+        destination: "/chat",
+      },
+    };
+  }
 
-//   return {
-//     props: {},
-//   };
-// };
+  return {
+    props: {},
+  };
+};

@@ -10,4 +10,40 @@
   .side-menu-item {
     @apply m-2 flex items-center gap-4 rounded-md p-2 hover:bg-gray-800;
   }
+
+  /* Hide scrollbar but keep functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+
+  /* Loading dots animation */
+  .loading-dots {
+    position: relative;
+    width: 24px;
+    height: 6px;
+  }
+
+  .loading-dots::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10b981;
+    animation: dotMove 1.5s infinite ease-in-out;
+  }
+
+  @keyframes dotMove {
+    0%, 100% {
+      box-shadow: -10px 0 0 -5px #10b981, 0 0 0 1px #10b981, 10px 0 0 -5px #10b981;
+    }
+    50% {
+      box-shadow: -10px 0 0 0 #10b981, 0 0 0 -5px #10b981, 10px 0 0 0 #10b981;
+    }
+  }
 }

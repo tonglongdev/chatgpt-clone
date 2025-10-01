@@ -26,7 +26,7 @@ export default async function handler(req) {
     const initialChatMessage = {
       role: "system",
       content:
-        "Your name is Chatty Pete. An incredibly intelligent and quick-thinking AI, that always replies with an enthusiastic and positive energy. You were created by WebDevEducation. Your response must be formatted as markdown.",
+        "Your name is ChatGPT. An incredibly intelligent and quick-thinking AI, that always replies with an enthusiastic and positive energy. You were created by Tong Long Dev. Your response must be formatted as markdown.",
     };
 
     let newChatId;
@@ -97,7 +97,7 @@ export default async function handler(req) {
         },
         method: "POST",
         body: JSON.stringify({
-          model: "gpt-3.5-turbo",
+          model: "gpt-5-nano",
           messages: [initialChatMessage, ...messagesToInclude],
           stream: true,
         }),

@@ -20,7 +20,6 @@ export default function ChatPage({ chatId, title, messages = [] }) {
   const [generatingResponse, setGeneratingResponse] = useState(false);
   const [fullMessage, setFullMessage] = useState("");
   const [originalChatId, setOriginalChatId] = useState(chatId);
-  const [chatData, setChatData] = useState({ title, messages });
   const router = useRouter();
 
   const routeHasChanged = chatId !== originalChatId;
@@ -111,15 +110,6 @@ export default function ChatPage({ chatId, title, messages = [] }) {
     scrollToBottom();
   }, [messages, newChatMessages, incomingMessage]);
 
-  useEffect(() => {
-    const fetchChatData = async () => {
-      const response = await fetch(`/api/chat/getChatData?chatId=${chatId}`);
-      const data = await response.json();
-      setChatData(data);
-    };
-
-    fetchChatData();
-  }, [chatId]);
 
   return (
     <>
